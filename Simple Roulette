@@ -1,0 +1,97 @@
+package exercisejava;
+import java.util.Random;
+import java.util.Scanner;
+
+
+
+/**
+ *
+ * @author georg
+ */
+public class ExerciseJAVA {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner (System.in);
+        Random random = new Random();
+        boolean playAgain;
+        
+        do{
+        
+        System.out.println("Welcome to the Roulette!");
+        System.out.println("Choose your bet: ");
+        System.out.println("1. Even or Odd");
+        System.out.println("2. Red or Black ");
+        System.out.println("3. Choose a number (0-36)");
+        
+        
+        int betType = scanner.nextInt();
+        // Odd or Even
+        if (betType ==1 ) {
+            int bet;
+            do {
+                System.out.println("Enter your bet (1 for odd , 2 for Even): ");
+                bet = scanner.nextInt();
+            } while (bet != 1 && bet != 2);
+            int result = random.nextInt(37);
+            System.out.println("The result is:" + "" + result);
+            if ((result % 2 == 0 && bet ==2) || (result % 2 == 1 && bet==1)){
+                System.out.println("You won!");
+            }else{
+                System.out.println("You lost");}
+         //Red or Black
+        }else if(betType==2){
+            int bet;
+            //2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35
+            do{
+                System.out.println("Enter your bet(1 for Red or 2 for Black :");
+                bet = scanner.nextInt();
+            }while(bet!=1 && bet!=2);
+            int result = random.nextInt(37);
+            boolean isGreen=(result==0);
+            boolean isRed = (result == 1 || result == 3 || result == 5 || result == 7 ||
+                     result == 9 || result == 12 || result == 14 || result == 16 ||
+                     result == 18 || result == 19 || result == 21 || result == 23 ||
+                     result == 25 || result == 27 || result == 30 || result == 32 ||
+                     result == 34 || result == 36);
+            if(isRed && bet==1){
+                System.out.println("The result is " + result + " which is Red" );
+                    }else if(isGreen ){
+                    System.out.println("The result is " + result + " which is Green");
+                        }else{
+                        System.out.println("The result is " + result + " which is Black");
+                        
+                    }
+                
+            
+            if((isRed && bet==1) || (!isRed && !isGreen && bet==2)){
+                System.out.println("You won!");
+            }else{
+                System.out.println("You lost");
+            
+                }
+            //0-36
+        }else if (betType==3){
+            System.out.println("Enter your bet (0-36) :");
+            int bet = scanner.nextInt();
+            int result = random.nextInt(37);
+            System.out.println("The result is : " + result);
+            if ( result==bet){
+               System.out.println("You won!");
+               
+            }else{
+                System.out.println("You lost");
+            }
+        }else{
+            System.out.println("Invalid Type ");
+        }
+        System.out.println("Do you want to play again? (1 for Yes, 2 for No): ");
+            int playChoice = scanner.nextInt();
+            playAgain = (playChoice == 1);
+        }while(playAgain);
+        System.out.println("Thank you for playing!");
+    }
+    
+}
